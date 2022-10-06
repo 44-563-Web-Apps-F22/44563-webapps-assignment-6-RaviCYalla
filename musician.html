@@ -25,6 +25,8 @@
 
 let correct =0;
 let wrong =0;
+let try_correct = 0
+let try_wrong = 0 
 
 
 function checkGuess(){
@@ -35,12 +37,27 @@ function checkGuess(){
     
     if(secret_string_value==Guessing){
                 correct+=1;
+                try_correct=try_correct + 1
                 alert("You got it right");
+                document.getElementById("result").innerHTML = "Correct guesses are " + correct + " and Wrong guesses are " + wrong
             } else {
                 wrong+=1;
+                try_wrong= try_wrong + 1
                 alert("Wrong Musicain");
+                if(try_correct==0 && try_wrong%3==0 && try_wrong!=0) {
+                alert("Sorry, game over.");
+                wrong = 0  
+                correct = 0
+            } else if(try_correct>0){
+                try_correct=0
+                try_wrong=0
             }
-            document.getElementById("result").innerHTML="correct "+correct+"  wrong "+wrong;
+            
+            document.getElementById("result").innerHTML = "Correct guesses are " + correct + " and Wrong guesses are " + wrong
+
+        }
+
+    
 }
 </script>
 <br>
